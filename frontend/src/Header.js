@@ -9,7 +9,7 @@ function Header() {
             <nav>
                 <ul>
                     <li><Link to="/">Get Recipes</Link> {/* Link to the home page */}</li>
-                    <li><Link to="/submit-recipe">Submit Recipe</Link> {/* Link to the recipe submission page */}</li>
+                    <li><Link to="/submit-recipe">Submit Your Recipe</Link> {/* Link to the recipe submission page */}</li>
                 </ul>
             </nav>
         </header>
