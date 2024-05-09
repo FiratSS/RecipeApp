@@ -60,6 +60,20 @@ This will serve the frontend on `http://localhost:3000`.
 - **Search Recipes**: Enter ingredients or dish names to fetch recipes from the external API.
 - **Manage Recipes**: Add, delete, and update recipes in the local MongoDB database via the backend API.
 
+  ### Configuring Environment Variables
+
+Create a `.env` file in the root of the backend directory and add the following variables:
+- `EDAMAM_APP_ID` = Your Edamam app ID
+- `EDAMAM_APP_KEY` = Your Edamam app key
+- `MONGO_URI` = Your MongoDB connection string
+
+This will ensure your application can connect to the database and the external API correctly.
+
+  
+## Security
+
+The backend is configured with rate limiting to prevent abuse and CORS to restrict resources to trusted domains.
+
 ## Built With
 
 - [React](https://reactjs.org/) - The web framework used for the frontend.
@@ -69,17 +83,17 @@ This will serve the frontend on `http://localhost:3000`.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/yourusername/recipeapp/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+We welcome contributions from the community. If you wish to contribute to the Recipe App, please first discuss the change you wish to make via an issue on this repository or any other method of contact listed in the [CONTRIBUTING.md](https://github.com/Firatss/recipeapp/CONTRIBUTING.md) file. This helps prevent duplication of effort and ensures that your contributions can be incorporated effectively.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/yourusername/recipeapp/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Firatss/recipeapp/tags).
 
 ## Authors
 
-- **Your Name** - *Initial work* - [YourUsername](https://github.com/YourUsername)
+- **Firat** - *Initial work* - [Firatss](https://github.com/Firatss)
 
-See also the list of [contributors](https://github.com/yourusername/recipeapp/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Firatss/recipeapp/contributors) who participated in this project.
 
 ## License
 
