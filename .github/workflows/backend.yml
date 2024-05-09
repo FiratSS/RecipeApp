@@ -1,5 +1,4 @@
-
-name: Backend CI/CD
+name: Backend CI
 
 on:
   push:
@@ -12,15 +11,16 @@ on:
       - 'backend/**'
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
+
     - name: Set up Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v3
       with:
-        node-version: '20'
+        node-version: '16'
 
     - name: Install dependencies
       working-directory: ./backend
