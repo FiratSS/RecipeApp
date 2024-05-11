@@ -8,17 +8,32 @@ import SubmitRecipe from './SubmitRecipe';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSearch = (query) => {
-    axios.get(`http://localhost:3000/searchRecipes?search=${query}`)
-      .then(response => {
-        const recipes = response.data.hits.map(hit => hit.recipe);
-        setRecipes(recipes);  // Update recipes state with the fetched recipes
-      })
-      .catch(error => {
-        console.error('Error fetching recipes:', error);
-      });
+  const handleSearch = async (query) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`http://localhost:3000/searchRecipes?search=${query}`);
+      const recipes = response.data.hits.map(hit => hit.recipe);
+      setRecipes(recipes);
+      setError(''); // Clear any existing errors on successful fetch
+    } catch (error) {
+      console.error('Error fetching recipes:', error);
+      setError('Failed to fetch recipes'); // Set error message on failure
+    } finally {
+      setLoading(false); // Ensure loading is set to false after fetch
+    }
   };
+
+  // Render method starts here
+  if (loading) {
+    return <div>Loading...</div>; // Display a loading indicator
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>; // Display error message
+  }
 
   return (
     <Router>
