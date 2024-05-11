@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
-import axios from 'axios';
+import { render, screen,/* waitFor*/ } from '@testing-library/react';
+// import axios from 'axios';
 import App from './App';
 
 jest.mock('axios');
@@ -9,20 +9,20 @@ jest.mock('axios');
 //   axios.get.mockImplementation(() =>
 //     new Promise(resolve => setTimeout(() => resolve({
 //       data: { hits: [{ recipe: { title: 'Test Recipe' } }] }
-//     }), 500))
+//     }), 100))  // Reduced timeout for quicker test execution
 //   );
 
-//   const { getByText } = render(<App />);
-//   expect(getByText(/loading.../i)).toBeInTheDocument();
+//   render(<App />);
+//   expect(screen.getByText("Loading...")).toBeInTheDocument();  // Correct text match
 
-//   await waitFor(() => expect(getByText('Test Recipe')).toBeInTheDocument());
+//   await waitFor(() => expect(screen.getByText('Test Recipe')).toBeInTheDocument());
 // });
 
 // test('displays error message when API call fails', async () => {
 //   axios.get.mockRejectedValue(new Error('API Error'));
 
 //   render(<App />);
-//   // Ensure the error message is displayed
+//   // Wait for the error message to be displayed
 //   await waitFor(() => expect(screen.getByText(/Error: Failed to fetch recipes/)).toBeInTheDocument());
 // });
 
