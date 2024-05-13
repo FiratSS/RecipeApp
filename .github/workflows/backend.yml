@@ -31,3 +31,7 @@ jobs:
     - name: Run tests
       working-directory: ./backend
       run: npm test
+      env:
+          EDAMAM_APP_KEY: ${{ secrets.EDAMAM_APP_KEY }}
+          EDAMAM_APP_ID: ${{ secrets.EDAMAM_APP_ID }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
