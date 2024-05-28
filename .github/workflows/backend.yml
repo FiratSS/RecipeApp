@@ -28,26 +28,26 @@ jobs:
       working-directory: ./backend
       run: npm install
 
+    - name: Set environment variables
+      run: |
+        echo "EDAMAM_APP_KEY=${{ secrets.EDAMAM_APP_KEY }}" >> $GITHUB_ENV
+        echo "EDAMAM_APP_ID=${{ secrets.EDAMAM_APP_ID }}" >> $GITHUB_ENV
+        echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
+        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
+        echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
+        echo "FIREBASE_DATABASE_URL=${{ secrets.FIREBASE_DATABASE_URL }}" >> $GITHUB_ENV
+        echo "HTTPS_KEY_PATH=${{ secrets.HTTPS_KEY_PATH }}" >> $GITHUB_ENV
+        echo "HTTPS_CERT_PATH=${{ secrets.HTTPS_CERT_PATH }}" >> $GITHUB_ENV
+
     - name: Run tests
       working-directory: ./backend
       run: npm test
-      env:
-        EDAMAM_APP_KEY: ${{ secrets.EDAMAM_APP_KEY }}
-        EDAMAM_APP_ID: ${{ secrets.EDAMAM_APP_ID }}
-        MONGO_URI: ${{ secrets.MONGO_URI }}
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+    - name: Build Docker image
+      run: docker build -t firatss/recipeapp-backend:latest ./backend
 
-    - name: Login to DockerHub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: ./backend
-        push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/recipeapp-backend:latest
+    - name: Push Docker image
+      run: docker push firatss/recipeapp-backend:latest
