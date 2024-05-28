@@ -8,6 +8,9 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# Ignore Firebase service account key
+secrets/recipeapp-f4108-firebase-adminsdk-m3r6q-dfa7e7fdd4.json
+
 # Build directories
 /dist
 /build

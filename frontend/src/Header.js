@@ -1,18 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css'; // Ensure the CSS file is properly linked
+import React, { useState } from 'react';
+import { FaUserCircle } from 'react-icons/fa'; // Using react-icons for user icon
+import AuthDropdown from './components/AuthDropdown'; // Ensure the path is correct
 
 function Header() {
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleMouseEnter = () => {
+        setShowDropdown(true);
+    };
+
+    const handleMouseLeave = () => {
+        setShowDropdown(false);
+    };
+
+    const handleClick = () => {
+        setShowDropdown((prev) => !prev);
+    };
+
     return (
-        <header className="header">
-            <h1><Link to="/" className="header-title">Recipe Finder</Link></h1> {/* Title of the app */}
+        <div className="header">
+            <h1>Recipe Finder</h1>
             <nav>
                 <ul>
-                    <li><Link to="/">Get Recipes</Link> {/* Link to the home page */}</li>
-                    <li><Link to="/submit-recipe">Submit Your Recipe</Link> {/* Link to the recipe submission page */}</li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/submit-recipe">Submit Recipe</a></li>
                 </ul>
+                <div
+                    className="user-icon-container"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={handleClick}
+                    style={{ display: 'inline-block', position: 'relative', cursor: 'pointer' }}
+                >
+                    <FaUserCircle size={24} />
+                    {showDropdown && <AuthDropdown />}
+                </div>
             </nav>
-        </header>
+        </div>
     );
 }
 

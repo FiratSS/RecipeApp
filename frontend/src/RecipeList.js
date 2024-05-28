@@ -3,7 +3,7 @@ import './RecipeList.css';
 
 function RecipeList({ recipes }) {
     if (recipes.length === 0) {
-        return <div className="recipe-list-empty">No recipes found. Try a different search!</div>;
+        return <div className="recipe-list-empty">You deserve a delicious meal...</div>;
     }
 
     return (

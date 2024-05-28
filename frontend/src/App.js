@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { auth } from './firebaseConfig';
 import Header from './Header';
 import Search from './Search';
 import RecipeList from './RecipeList';
 import SubmitRecipe from './SubmitRecipe';
+import axios from 'axios';
+
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleSearch = async (query) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:3000/searchRecipes?search=${query}`);
+      const response = await axios.get(`${apiUrl}/searchRecipes?search=${query}`);
       const recipes = response.data.hits.map(hit => hit.recipe);
       setRecipes(recipes);
       setError(''); // Clear any existing errors on successful fetch
@@ -26,7 +37,6 @@ function App() {
     }
   };
 
-  // Render method starts here
   if (loading) {
     return <div>Loading...</div>; // Display a loading indicator
   }

@@ -19,7 +19,7 @@ function SubmitRecipe() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3000/recipes', recipe);
+            await axios.post('https://localhost:3000/recipes', recipe);
             alert('Recipe submitted successfully!');
             setRecipe({ title: '', ingredients: '', instructions: '' }); // Reset form
         } catch (error) {
