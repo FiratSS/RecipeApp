@@ -13,11 +13,11 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
+      // If you need to handle the authenticated user in the future, you can uncomment and use this
+      // setUser(user);
     });
     return () => unsubscribe();
   }, []);
