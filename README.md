@@ -101,7 +101,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. Create docker-compose.yml
 
 Create a docker-compose.yml file in your project root directory:
-
+```yaml
 version: '3.8'
 
 services:
@@ -133,12 +133,13 @@ services:
 
 networks:
   recipe-network:
-
+```
 3. Run Docker Compose
 
 In your project root directory, run the following command:
+```bash
 docker-compose up -d
-
+```
 This command will pull the images from Docker Hub and start the services.
 
 Using the App
