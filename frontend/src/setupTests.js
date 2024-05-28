@@ -1,5 +1,10 @@
-// setupTests.js
-import '@testing-library/jest-dom';
+// src/setupTests.js
 
+// Polyfill for TextDecoder and TextEncoder
+const { TextDecoder, TextEncoder } = require('text-encoding');
 
-jest.mock('axios');  // Globally mock axios for all tests
+global.TextDecoder = TextDecoder;
+global.TextEncoder = TextEncoder;
+
+// Mock axios
+jest.mock('axios');
