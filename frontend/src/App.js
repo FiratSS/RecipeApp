@@ -15,7 +15,7 @@ function App() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       // If you need to handle the authenticated user in the future, you can uncomment and use this
       // setUser(user);
     });
@@ -28,22 +28,14 @@ function App() {
       const response = await axios.get(`${apiUrl}/searchRecipes?search=${query}`);
       const recipes = response.data.hits.map(hit => hit.recipe);
       setRecipes(recipes);
-      setError(''); // Clear any existing errors on successful fetch
+      setError('');
     } catch (error) {
       console.error('Error fetching recipes:', error);
-      setError('Failed to fetch recipes'); // Set error message on failure
+      setError('Failed to fetch recipes');
     } finally {
-      setLoading(false); // Ensure loading is set to false after fetch
+      setLoading(false);
     }
   };
-
-  if (loading) {
-    return <div>Loading...</div>; // Display a loading indicator
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>; // Display error message
-  }
 
   return (
     <Router>

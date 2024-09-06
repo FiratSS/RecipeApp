@@ -1,63 +1,28 @@
-.recipe-item {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    /* Add rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Soft shadow for depth */
-    transition: transform 0.2s ease-in-out;
-    /* Smooth transform on hover */
+.recipe-list-empty {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #666;
 }
 
-.recipe-item:hover {
-    transform: scale(1.03);
-    /* Slight scale on hover for interaction feedback */
+.recipe-item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
 }
 
 .recipe-item img {
     max-width: 100%;
-    /* Ensures the image is responsive */
-    height: auto;
-    /* Maintain aspect ratio */
-    margin-bottom: 10px;
-    /* Space below the image */
+    border-radius: 4px;
 }
 
 .recipe-item h2 {
-    color: #333;
-    /* Dark grey for better readability */
+    margin-top: 0;
 }
 
 .diet-labels {
     font-style: italic;
-    color: #007BFF;
-    margin-top: 10px;
-    /* Space from the last element */
-}
-
-.recipe-item p {
-    color: #666;
-    /* Lighter text color for less emphasis */
-    line-height: 1.6;
-    /* Improved line spacing for readability */
-}
-
-.recipe-item h3 {
-    color: #333;
-    margin-top: 20px;
-}
-
-.recipe-item ul {
-    list-style-type: circle;
-    /* Or choose 'square', 'disc', etc. */
-    margin-left: 20px;
-    padding-left: 0;
-}
-
-.recipe-item li {
-    margin-bottom: 5px;
-    color: #666;
-    /* Subtle text color for ingredients */
+    color: #777;
 }

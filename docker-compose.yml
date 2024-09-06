@@ -17,8 +17,19 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - MONGO_URI=${MONGO_URI}
-      - JWT_SECRET=${JWT_SECRET}
+      - MONGO_URI=mongodb://host.docker.internal:27017/myrecipeapp
+      - JWT_SECRET=sefV4IEkaq97mxBCnPCHsGlI0Qk8SroCFDlhXBAuIlY=
+      - EDAMAM_APP_ID=a35dc87a
+      - EDAMAM_APP_KEY=e73fac175f3807578f66b38a678e9b5a
+      - HTTPS_KEY_PATH=/etc/ssl/certs/localhost+2-key.pem
+      - HTTPS_CERT_PATH=/etc/ssl/certs/localhost+2.pem
+    networks:
+      - recipe-network
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
     networks:
       - recipe-network
 

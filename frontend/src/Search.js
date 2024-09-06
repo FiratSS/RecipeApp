@@ -18,7 +18,7 @@ function Search({ onSearch }) {
                 placeholder="Search for recipes..."
                 className="search-input"
             />
-            <button type="submit" className="search-button">I'm hangry</button>
+            <button type="submit" className="search-button">Search</button>
         </form>
     );
 }

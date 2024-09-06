@@ -1,5 +1,5 @@
-# Use Node.js official image as base
-FROM node:14
+# Use Node.js official image as base for building the app
+FROM node:14 as build
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -16,7 +16,7 @@ RUN npm run build
 
 # Use nginx to serve the build
 FROM nginx:alpine
-COPY --from=0 /usr/src/app/build /usr/share/nginx/html
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
 
 # Expose the port nginx runs on
 EXPOSE 80

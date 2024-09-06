@@ -1,0 +1,39 @@
+.submit-recipe {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.submit-recipe h1 {
+    text-align: center;
+}
+
+.submit-recipe form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-recipe form input,
+.submit-recipe form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-recipe form button {
+    padding: 10px 20px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.submit-recipe form button:hover {
+    background-color: #21a1f1;
+}

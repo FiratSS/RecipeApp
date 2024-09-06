@@ -7,9 +7,9 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const https = require('https');
 require('dotenv').config();
-
+const jwt = require('jsonwebtoken');
 const recipeRoutes = require('./routes/recipes');
-const authMiddleware = require('./middleware/authMiddleware'); // Import the auth middleware
+const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
 app.use(express.json());
@@ -36,11 +36,11 @@ app.get('/searchRecipes', [
         method: 'GET',
         url: `https://api.edamam.com/search`,
         params: {
-            q: req.query.search, // 'q' is used instead of 'query'
-            diet: req.query.diet, // Check if 'diet' parameter is supported as is
+            q: req.query.search,
+            diet: req.query.diet,
             app_id: process.env.EDAMAM_APP_ID,
             app_key: process.env.EDAMAM_APP_KEY,
-            to: '10' // Assuming 'to' parameter is used to limit results
+            to: '10'
         }
     };
 
@@ -54,7 +54,14 @@ app.get('/searchRecipes', [
 });
 
 // Use the recipes routes with authentication middleware
-app.use('/api/recipes', authMiddleware, recipeRoutes);
+app.use('/recipes', authMiddleware, recipeRoutes);
+
+// Endpoint to generate token (mock example)
+app.post('/generateToken', (req, res) => {
+    const user = { id: 1 }; // Replace with actual user information
+    const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.json({ token });
+});
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,

@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const Recipe = require('../models/Recipe');
-const authMiddleware = require('../middleware/authMiddleware');
+const Recipe = require('../models/Recipe'); // Assuming you have a Recipe model defined
 
-// POST route to create a new recipe, requires authentication
-router.post('/', authMiddleware, async (req, res) => {
+// POST endpoint for creating a new recipe
+router.post('/', async (req, res) => {
+    const recipe = new Recipe({
+        title: req.body.title,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+    });
+
     try {
-        const newRecipe = new Recipe({
-            ...req.body,
-            user: req.user.uid // Associate recipe with the user's UID
-        });
-        const savedRecipe = await newRecipe.save();
-        res.status(201).send(savedRecipe);
-    } catch (error) {
-        res.status(400).send(error);
+        const newRecipe = await recipe.save();
+        res.status(201).json(newRecipe);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
     }
 });
 
